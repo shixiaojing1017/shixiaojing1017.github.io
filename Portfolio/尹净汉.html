@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To 尹净汉 💎</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            min-height: 100vh;
+            background: linear-gradient(160deg, #191938, #2c2b52, #443b70);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: "Microsoft Yahei", sans-serif;
+            overflow: hidden;
+        }
+        .card {
+            background: rgba(255,255,255,0.12);
+            backdrop-filter: blur(10px);
+            border-radius: 24px;
+            padding: 50px 40px;
+            max-width: 520px;
+            text-align: center;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.25);
+            border: 1px solid rgba(255,255,255,0.18);
+        }
+        .title {
+            font-size: 28px;
+            color: #fff;
+            margin-bottom: 24px;
+            letter-spacing: 2px;
+        }
+        .content-text {
+            font-size: 18px;
+            color: #fce4f0;
+            line-height: 2;
+            min-height: 240px;
+        }
+        .end-tip {
+            margin-top:20px;
+            font-size:16px;
+            color:#ffd1e3;
+            opacity:0;
+        }
+        /* 漂浮爱心 */
+        .heart-item{
+            position: fixed;
+            color:#ff87b2;
+            opacity:0.7;
+            animation: heartFloat 7s ease-in-out infinite;
+            pointer-events: none;
+        }
+        @keyframes heartFloat {
+            0%{transform: translateY(100vh) rotate(0deg);opacity:0;}
+            10%{opacity:0.8;}
+            90%{opacity:0.8;}
+            100%{transform: translateY(-15vh) rotate(360deg);opacity:0;}
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <div class="title">To 尹净汉 💎</div>
+        <div class="content-text" id="words"></div>
+        <div class="end-tip" id="endText">永远是你的克拉，一直为你应援</div>
+    </div>
+
+<script>
+const sentences = [
+    "尹净汉，",
+    "你就像悬在夜空里的月亮，",
+    "清冷又柔软，自带淡淡的柔光。",
+    "每次看见你的模样，",
+    "心里都会悄悄变得温柔。",
+    "不用距离靠近，",
+    "只要你平安自在，笑容常在，",
+    "对我而言就是最美好的事。",
+    "我喜欢你，尹净汉。"
+];
+const box = document.getElementById("words");
+const endBox = document.getElementById("endText");
+let line = 0;
+let char = 0;
+
+function typing(){
+    if(line >= sentences.length){
+        endBox.style.opacity = "1";
+        return;
+    }
+    const str = sentences[line];
+    if(char < str.length){
+        box.innerHTML += str[char];
+        char++;
+    }else{
+        box.innerHTML += "<br><br>";
+        line++;
+        char = 0;
+    }
+    setTimeout(typing, 130);
+}
+typing();
+
+// 随机爱心
+function makeHeart(){
+    const h = document.createElement("div");
+    h.className = "heart-item";
+    h.innerText = "♥";
+    h.style.left = Math.random() * 100 + "vw";
+    h.style.fontSize = Math.random()*22 +12 +"px";
+    h.style.animationDuration = (Math.random()*4 +5)+"s";
+    document.body.appendChild(h);
+    setTimeout(()=>h.remove(),9000);
+}
+setInterval(makeHeart, 800);
+</script>
+</body>
+</html>
